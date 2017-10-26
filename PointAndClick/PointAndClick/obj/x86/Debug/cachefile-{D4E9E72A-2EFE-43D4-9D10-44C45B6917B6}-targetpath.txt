@@ -5,3 +5,4 @@ Content\doorway1.xnb
 Content\x.xnb
 Content\key.xnb
 Content\Text.xnb
+Content\footsteps.xnb

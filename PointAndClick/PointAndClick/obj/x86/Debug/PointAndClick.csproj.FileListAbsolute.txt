@@ -22,3 +22,27 @@ E:\School\PointAndClick\PointAndClick\PointAndClick\bin\x86\Debug\Content\x.xnb
 E:\School\PointAndClick\PointAndClick\PointAndClick\bin\x86\Debug\Content\Text.xnb
 E:\School\PointAndClick\PointAndClick\PointAndClick\bin\x86\Debug\Content\key.xnb
 E:\School\PointAndClick\PointAndClick\PointAndClick\obj\x86\Debug\PointAndClick.csproj.CoreCompileInputs.cache
+E:\Bat Country\Bat-Country\PointAndClick\PointAndClick\obj\x86\Debug\PointAndClick.exe
+E:\Bat Country\Bat-Country\PointAndClick\PointAndClick\obj\x86\Debug\PointAndClick.pdb
+E:\Bat Country\Bat-Country\PointAndClick\PointAndClick\bin\x86\Debug\Content\cursor.xnb
+E:\Bat Country\Bat-Country\PointAndClick\PointAndClick\bin\x86\Debug\Content\SpriteCan.xnb
+E:\Bat Country\Bat-Country\PointAndClick\PointAndClick\bin\x86\Debug\Content\doorway.xnb
+E:\Bat Country\Bat-Country\PointAndClick\PointAndClick\bin\x86\Debug\Content\doorway1.xnb
+E:\Bat Country\Bat-Country\PointAndClick\PointAndClick\bin\x86\Debug\Content\x.xnb
+E:\Bat Country\Bat-Country\PointAndClick\PointAndClick\bin\x86\Debug\Content\key.xnb
+E:\Bat Country\Bat-Country\PointAndClick\PointAndClick\bin\x86\Debug\Content\Text.xnb
+E:\Bat Country\Bat-Country\PointAndClick\PointAndClick\bin\x86\Debug\Content\footsteps.xnb
+E:\Bat Country\Bat-Country\PointAndClick\PointAndClick\bin\x86\Debug\PointAndClick.exe
+E:\Bat Country\Bat-Country\PointAndClick\PointAndClick\bin\x86\Debug\PointAndClick.pdb
+E:\Bat Country\Bat-Country\PointAndClick\PointAndClick\bin\x86\Debug\Microsoft.Xna.Framework.dll
+E:\Bat Country\Bat-Country\PointAndClick\PointAndClick\bin\x86\Debug\Microsoft.Xna.Framework.Game.dll
+E:\Bat Country\Bat-Country\PointAndClick\PointAndClick\bin\x86\Debug\Microsoft.Xna.Framework.GamerServices.dll
+E:\Bat Country\Bat-Country\PointAndClick\PointAndClick\bin\x86\Debug\Microsoft.Xna.Framework.Graphics.dll
+E:\Bat Country\Bat-Country\PointAndClick\PointAndClick\bin\x86\Debug\Microsoft.Xna.Framework.Input.Touch.dll
+E:\Bat Country\Bat-Country\PointAndClick\PointAndClick\bin\x86\Debug\Microsoft.Xna.Framework.xml
+E:\Bat Country\Bat-Country\PointAndClick\PointAndClick\bin\x86\Debug\Microsoft.Xna.Framework.Game.xml
+E:\Bat Country\Bat-Country\PointAndClick\PointAndClick\bin\x86\Debug\Microsoft.Xna.Framework.Graphics.xml
+E:\Bat Country\Bat-Country\PointAndClick\PointAndClick\bin\x86\Debug\Microsoft.Xna.Framework.GamerServices.xml
+E:\Bat Country\Bat-Country\PointAndClick\PointAndClick\bin\x86\Debug\Microsoft.Xna.Framework.Input.Touch.xml
+E:\Bat Country\Bat-Country\PointAndClick\PointAndClick\obj\x86\Debug\PointAndClick.csprojResolveAssemblyReference.cache
+E:\Bat Country\Bat-Country\PointAndClick\PointAndClick\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt

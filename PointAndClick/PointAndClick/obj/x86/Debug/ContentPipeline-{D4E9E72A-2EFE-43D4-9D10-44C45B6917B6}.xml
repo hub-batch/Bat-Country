@@ -7,7 +7,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>E:\School\PointAndClick\PointAndClick\PointAndClick\bin\x86\Debug\Content\cursor.xnb</Output>
+      <Output>E:\Bat Country\Bat-Country\PointAndClick\PointAndClick\bin\x86\Debug\Content\cursor.xnb</Output>
       <Time>2017-10-20T13:33:41.6227033-04:00</Time>
     </Item>
     <Item>
@@ -16,7 +16,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>E:\School\PointAndClick\PointAndClick\PointAndClick\bin\x86\Debug\Content\SpriteCan.xnb</Output>
+      <Output>E:\Bat Country\Bat-Country\PointAndClick\PointAndClick\bin\x86\Debug\Content\SpriteCan.xnb</Output>
       <Time>2017-10-19T13:22:40.628271-04:00</Time>
     </Item>
     <Item>
@@ -25,7 +25,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>E:\School\PointAndClick\PointAndClick\PointAndClick\bin\x86\Debug\Content\doorway.xnb</Output>
+      <Output>E:\Bat Country\Bat-Country\PointAndClick\PointAndClick\bin\x86\Debug\Content\doorway.xnb</Output>
       <Time>2017-10-20T12:38:10.1984007-04:00</Time>
     </Item>
     <Item>
@@ -34,7 +34,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>E:\School\PointAndClick\PointAndClick\PointAndClick\bin\x86\Debug\Content\doorway1.xnb</Output>
+      <Output>E:\Bat Country\Bat-Country\PointAndClick\PointAndClick\bin\x86\Debug\Content\doorway1.xnb</Output>
       <Time>2017-10-20T12:30:17.881396-04:00</Time>
     </Item>
     <Item>
@@ -43,7 +43,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>E:\School\PointAndClick\PointAndClick\PointAndClick\bin\x86\Debug\Content\x.xnb</Output>
+      <Output>E:\Bat Country\Bat-Country\PointAndClick\PointAndClick\bin\x86\Debug\Content\x.xnb</Output>
       <Time>2017-10-23T12:16:00.7563401-04:00</Time>
     </Item>
     <Item>
@@ -52,7 +52,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>E:\School\PointAndClick\PointAndClick\PointAndClick\bin\x86\Debug\Content\key.xnb</Output>
+      <Output>E:\Bat Country\Bat-Country\PointAndClick\PointAndClick\bin\x86\Debug\Content\key.xnb</Output>
       <Time>2017-10-23T13:53:01.2156915-04:00</Time>
     </Item>
     <Item>
@@ -61,8 +61,17 @@
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
-      <Output>E:\School\PointAndClick\PointAndClick\PointAndClick\bin\x86\Debug\Content\Text.xnb</Output>
+      <Output>E:\Bat Country\Bat-Country\PointAndClick\PointAndClick\bin\x86\Debug\Content\Text.xnb</Output>
       <Time>2017-10-23T12:21:10.9325809-04:00</Time>
+    </Item>
+    <Item>
+      <Source>footsteps.mp3</Source>
+      <Name>footsteps</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Bat Country\Bat-Country\PointAndClick\PointAndClick\bin\x86\Debug\Content\footsteps.xnb</Output>
+      <Time>2017-10-26T13:09:42.8871498-04:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -71,10 +80,10 @@
       <TargetProfile>Reach</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>E:\School\PointAndClick\PointAndClick\PointAndClickContent\</RootDirectory>
-      <LoggerRootDirectory>E:\School\PointAndClick\PointAndClick\PointAndClick\</LoggerRootDirectory>
-      <IntermediateDirectory>E:\School\PointAndClick\PointAndClick\PointAndClick\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>E:\School\PointAndClick\PointAndClick\PointAndClick\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>E:\Bat Country\Bat-Country\PointAndClick\PointAndClickContent\</RootDirectory>
+      <LoggerRootDirectory>E:\Bat Country\Bat-Country\PointAndClick\PointAndClick\</LoggerRootDirectory>
+      <IntermediateDirectory>E:\Bat Country\Bat-Country\PointAndClick\PointAndClick\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>E:\Bat Country\Bat-Country\PointAndClick\PointAndClick\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>
@@ -102,8 +111,8 @@
         <Value>2011-09-01T16:22:30-04:00</Value>
       </Assembly>
       <Assembly>
-        <Key>C:\WINDOWS\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
-        <Value>2017-10-25T12:52:14.1370903-04:00</Value>
+        <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
+        <Value>2017-10-19T11:54:28.3987932-04:00</Value>
       </Assembly>
     </Assemblies>
   </Asset>

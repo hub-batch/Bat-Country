@@ -11,9 +11,6 @@ using Microsoft.Xna.Framework.Media;
 
 namespace PointAndClick
 {
-    /// <summary>
-    /// This is the main type for your game
-    /// </summary>
     public class Game1 : Game
     {
         GraphicsDeviceManager graphics;
@@ -35,34 +32,23 @@ namespace PointAndClick
         private static bool HoverX = false;
         private static Vector2 HoverText;
         private static bool HoverRoom;
-        private static Item KeyItem = new Item();
-        private static Player PlayerOne = new Player();
+        private static Item KeyItem;
+        private static Player PlayerOne;
+        private static SoundEffect FootstepsSound;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
         }
-
-        /// <summary>
-        /// Allows the game to perform any initialization it needs to before starting to run.
-        /// This is where it can query for any required services and load any non-graphic
-        /// related content.  Calling base.Initialize will enumerate through any components
-        /// and initialize them as well.
-        /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            PlayerOne = new Player();
+            KeyItem = new Item();
             base.Initialize();
         }
-
-        /// <summary>
-        /// LoadContent will be called once per game and is the place to load
-        /// all of your content.
-        /// </summary>
         protected override void LoadContent()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             CursorImage = Content.Load<Texture2D>("Cursor");
             sprite = this.Content.Load<Texture2D>("SpriteCan");
@@ -77,10 +63,7 @@ namespace PointAndClick
             BackRoom = new Rectangle(0, 0, 230, 425);
             KeyItem.ItemTex = Content.Load<Texture2D>("key");
             KeyItem.ItemSize = new Rectangle(200, -30, 100, 100);
-
-
-
-            // TODO: use this.Content to load your game content here
+            FootstepsSound = Content.Load<SoundEffect>("footsteps");
         }
 
         protected override void UnloadContent()
@@ -91,63 +74,10 @@ namespace PointAndClick
 
         protected override void Update(GameTime gameTime)
         {
-            //Keeps track of the position of the mouse (in a Point, vector, and as a rect)
-            var mouseState = Mouse.GetState();
-            cursorPos = new Rectangle(mouseState.X, mouseState.Y, 48, 48);
-            cursorVec = new Vector2(mouseState.X, mouseState.Y);
-            var CursorPoint = new Point(mouseState.X, mouseState.Y);
-            HoverText = new Vector2(mouseState.X + 25, mouseState.Y - 15);
-            //Keeps track of player state. 1= start, 11= win state. 
-            switch (PlayerOne.PlayerState)
-            {
-                case 1:
-
-                break;
-                    //Etc. 
-            }
-            if (cursorPos.Intersects(ToRoom))
-            {
-                if (IsInRoom == true)
-                {
-                    HoverRoom = true;
-                }
-                if (mouseState.LeftButton == ButtonState.Pressed)
-                {
-                    IsInRoom = false;
-                }
-            }
-            else
-            {
-                HoverRoom = false;
-            }
-            if(cursorPos.Intersects(BackRoom))
-            {
-                if (mouseState.LeftButton == ButtonState.Pressed)
-                {
-                    IsInRoom = true;
-                }
-            }
-            if (cursorPos.Intersects(XUIRect))
-            {
-                HoverX = true;
-                if (mouseState.LeftButton == ButtonState.Pressed)
-                {
-                    Exit();
-                }
-            }
-            else
-            {
-                HoverX = false;
-            }
-            // TODO: Add your update logic here
-
+            TrackMouse();
+            TrackPlayerState();
             base.Update(gameTime);
         }
-
-        /// <summary>
-        /// This is called when the game should draw itself.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
             // TODO: Add your drawing code here
@@ -188,6 +118,59 @@ namespace PointAndClick
         public static void DrawCursorLayer()
         {
             spriteBatch.Draw(CursorImage, cursorPos, Color.White);
+        }
+        public void TrackMouse()
+        {
+            //Keeps track of the position of the mouse (in a Point, vector, and as a rect)
+            var mouseState = Mouse.GetState();
+            cursorPos = new Rectangle(mouseState.X, mouseState.Y, 48, 48);
+            cursorVec = new Vector2(mouseState.X, mouseState.Y);
+            var CursorPoint = new Point(mouseState.X, mouseState.Y);
+            HoverText = new Vector2(mouseState.X + 25, mouseState.Y - 15);
+            if (cursorPos.Intersects(ToRoom))
+            {
+                if (IsInRoom == true)
+                {
+                    HoverRoom = true;
+                }
+                if (mouseState.LeftButton == ButtonState.Pressed)
+                {
+                    FootstepsSound.Play();
+                    IsInRoom = false;
+                }
+            }
+            else
+            {
+                HoverRoom = false;
+            }
+            if (cursorPos.Intersects(BackRoom))
+            {
+                if (mouseState.LeftButton == ButtonState.Pressed)
+                {
+                    IsInRoom = true;
+                }
+            }
+            if (cursorPos.Intersects(XUIRect))
+            {
+                HoverX = true;
+                if (mouseState.LeftButton == ButtonState.Pressed)
+                {
+                    Exit();
+                }
+            }
+            else
+            {
+                HoverX = false;
+            }
+        }
+        public void TrackPlayerState()
+        {
+            switch (PlayerOne.PlayerState)
+            {
+                case 1:
+                    break;
+                    //Etc. 
+            }
         }
 
     }

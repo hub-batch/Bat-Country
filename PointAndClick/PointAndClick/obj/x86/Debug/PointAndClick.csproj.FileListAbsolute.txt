@@ -46,3 +46,4 @@ E:\Bat Country\Bat-Country\PointAndClick\PointAndClick\bin\x86\Debug\Microsoft.X
 E:\Bat Country\Bat-Country\PointAndClick\PointAndClick\bin\x86\Debug\Microsoft.Xna.Framework.Input.Touch.xml
 E:\Bat Country\Bat-Country\PointAndClick\PointAndClick\obj\x86\Debug\PointAndClick.csprojResolveAssemblyReference.cache
 E:\Bat Country\Bat-Country\PointAndClick\PointAndClick\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+E:\Bat Country\Bat-Country\PointAndClick\PointAndClick\bin\x86\Debug\Content\dialog.xnb

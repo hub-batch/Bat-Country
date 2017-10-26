@@ -73,6 +73,15 @@
       <Output>E:\Bat Country\Bat-Country\PointAndClick\PointAndClick\bin\x86\Debug\Content\footsteps.xnb</Output>
       <Time>2017-10-26T13:09:42.8871498-04:00</Time>
     </Item>
+    <Item>
+      <Source>dialog.png</Source>
+      <Name>dialog</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Bat Country\Bat-Country\PointAndClick\PointAndClick\bin\x86\Debug\Content\dialog.xnb</Output>
+      <Time>2017-10-26T13:48:18.3153869-04:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <ContentProjectGUID>{D4E9E72A-2EFE-43D4-9D10-44C45B6917B6}</ContentProjectGUID>

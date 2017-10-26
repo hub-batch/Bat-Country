@@ -6,3 +6,4 @@ Content\x.xnb
 Content\key.xnb
 Content\Text.xnb
 Content\footsteps.xnb
+Content\dialog.xnb

@@ -35,6 +35,9 @@ namespace PointAndClick
         private static Item KeyItem;
         private static Player PlayerOne;
         private static SoundEffect FootstepsSound;
+        private static Rectangle DialogRect;
+        private static Vector2 DialogVec;
+        private static Texture2D DialogBox;
 
         public Game1()
         {
@@ -64,6 +67,9 @@ namespace PointAndClick
             KeyItem.ItemTex = Content.Load<Texture2D>("key");
             KeyItem.ItemSize = new Rectangle(200, -30, 100, 100);
             FootstepsSound = Content.Load<SoundEffect>("footsteps");
+            DialogRect = new Rectangle(0, 275, 800, 200);
+            DialogVec = new Vector2(0, 275);
+            DialogBox = Content.Load<Texture2D>("dialog");
         }
 
         protected override void UnloadContent()
@@ -106,6 +112,7 @@ namespace PointAndClick
         {
             spriteBatch.Draw(KeyItem.ItemTex, KeyItem.ItemSize, Color.White);
             spriteBatch.Draw(RedXUITex, XUIRect, Color.White);
+            spriteBatch.Draw(DialogBox, DialogRect, Color.DarkGray);
             if (HoverX == true)
             {
                 spriteBatch.DrawString(TextFont, "Exit", HoverText, Color.White);
@@ -162,6 +169,10 @@ namespace PointAndClick
             {
                 HoverX = false;
             }
+            if (cursorPos.Intersects(DialogRect))
+            {
+                Dialog();
+            }
         }
         public void TrackPlayerState()
         {
@@ -172,7 +183,12 @@ namespace PointAndClick
                     //Etc. 
             }
         }
-
+        public static void Dialog()
+        {
+            spriteBatch.Begin();
+            spriteBatch.DrawString(TextFont, "Hello, this is text dialog.", DialogVec, Color.White, 0, DialogVec, 0, SpriteEffects.None, 0);
+            spriteBatch.End();
+        }
     }
 }
 

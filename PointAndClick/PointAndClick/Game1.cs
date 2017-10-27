@@ -38,6 +38,13 @@ namespace PointAndClick
         private static Rectangle DialogRect;
         private static Vector2 DialogVec;
         private static Texture2D DialogBox;
+        private static string DialogText, ParsedText, TypedText;
+        private static double TypedTextLength;
+        private static int DelayInMilli;
+        private static bool IsDoneDrawing;
+        private static SpriteSortMode SpriteSorting;
+        private static BlendState Blenda;
+        private static Nullable<Rectangle> DEATHRECTANGLE;
 
         public Game1()
         {
@@ -68,8 +75,15 @@ namespace PointAndClick
             KeyItem.ItemSize = new Rectangle(200, -30, 100, 100);
             FootstepsSound = Content.Load<SoundEffect>("footsteps");
             DialogRect = new Rectangle(0, 275, 800, 200);
-            DialogVec = new Vector2(0, 275);
+            DialogVec = new Vector2(50, 300);
             DialogBox = Content.Load<Texture2D>("dialog");
+            DialogText = "This is text";
+            ParsedText = parseText(DialogText);
+            DelayInMilli = 50;
+            IsDoneDrawing = false;
+            SpriteSorting = SpriteSortMode.FrontToBack;
+            Blenda = BlendState.NonPremultiplied;
+            DEATHRECTANGLE = null;
         }
 
         protected override void UnloadContent()
@@ -82,12 +96,12 @@ namespace PointAndClick
         {
             TrackMouse();
             TrackPlayerState();
+            TextTyper(gameTime);
             base.Update(gameTime);
         }
         protected override void Draw(GameTime gameTime)
         {
-            // TODO: Add your drawing code here
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSorting, Blenda);
             DrawBackgroundLayer();
             DrawUILayer();
             DrawCursorLayer();
@@ -97,15 +111,17 @@ namespace PointAndClick
 
         public static void DrawBackgroundLayer()
         {
+            float zDepth = 0;
+            Vector2 DummyVec = new Vector2(0, 0);
             if (IsInRoom == true)
             {
-                spriteBatch.Draw(DoorwayScene, mainFrame, Color.White);
-                spriteBatch.Draw(DummyTex, ToRoom, Color.White);
+                spriteBatch.Draw(DoorwayScene, mainFrame, DEATHRECTANGLE, Color.White, 0, DummyVec, SpriteEffects.None, zDepth);
+                spriteBatch.Draw(DummyTex, ToRoom, DEATHRECTANGLE, Color.White, 0, DummyVec, SpriteEffects.None, zDepth);
             }
             else
             {
-                spriteBatch.Draw(sprite, mainFrame, Color.White);
-                spriteBatch.Draw(DummyTex, BackRoom, Color.White);
+                spriteBatch.Draw(sprite, mainFrame, DEATHRECTANGLE, Color.White, 0, DummyVec, SpriteEffects.None, zDepth);
+                spriteBatch.Draw(DummyTex, BackRoom, DEATHRECTANGLE, Color.White, 0, DummyVec, SpriteEffects.None, zDepth);
             }
         }
         public static void DrawUILayer()
@@ -124,7 +140,9 @@ namespace PointAndClick
         }
         public static void DrawCursorLayer()
         {
-            spriteBatch.Draw(CursorImage, cursorPos, Color.White);
+            float zDepth = 0.3f;
+            Vector2 DummyVec = new Vector2(0, 0);
+            spriteBatch.Draw(CursorImage, cursorPos, DEATHRECTANGLE, Color.White, 0, DummyVec, SpriteEffects.None, zDepth);
         }
         public void TrackMouse()
         {
@@ -171,7 +189,10 @@ namespace PointAndClick
             }
             if (cursorPos.Intersects(DialogRect))
             {
-                Dialog();
+                if (mouseState.LeftButton == ButtonState.Pressed)
+                {
+                    Dialog();
+                }
             }
         }
         public void TrackPlayerState()
@@ -186,8 +207,51 @@ namespace PointAndClick
         public static void Dialog()
         {
             spriteBatch.Begin();
-            spriteBatch.DrawString(TextFont, "Hello, this is text dialog.", DialogVec, Color.White, 0, DialogVec, 0, SpriteEffects.None, 0);
+            spriteBatch.DrawString(TextFont, TypedText, DialogVec, Color.White);
             spriteBatch.End();
+        }
+        public String parseText(String text)
+        {
+            String line = String.Empty;
+            String returnString = String.Empty;
+            String[] wordArray = text.Split(' ');
+
+            foreach (String word in wordArray)
+            {
+                if (TextFont.MeasureString(line + word).Length() > DialogBox.Width)
+                {
+                    returnString = returnString + line + '\n';
+                    line = String.Empty;
+                }
+
+                line = line + word + ' ';
+            }
+
+            return returnString + line;
+        }
+        public static void TextTyper(GameTime gameTime)
+        {
+            if (!IsDoneDrawing)
+            {
+                if (DelayInMilli == 0)
+                {
+                    TypedText = ParsedText;
+                    IsDoneDrawing = true;
+                }
+                else if (TypedTextLength < ParsedText.Length)
+                {
+                    TypedTextLength = TypedTextLength + gameTime.ElapsedGameTime.TotalMilliseconds / DelayInMilli;
+
+                    if (TypedTextLength >= ParsedText.Length)
+                    {
+                        TypedTextLength = ParsedText.Length;
+                        IsDoneDrawing = true;
+                    }
+
+                    TypedText = ParsedText.Substring(0, (int)TypedTextLength);
+                }
+            }
+
         }
     }
 }

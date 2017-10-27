@@ -1,3 +1,4 @@
 E:\School\PointAndClick\PointAndClick\PointAndClickContent\obj\x86\Debug\PointAndClickContent.contentprojResolveAssemblyReference.cache
 E:\School\PointAndClick\PointAndClick\PointAndClickContent\obj\x86\Debug\PointAndClickContent.contentproj.CoreCompileInputs.cache
 E:\Bat Country\Bat-Country\PointAndClick\PointAndClickContent\obj\x86\Debug\PointAndClickContent.contentprojResolveAssemblyReference.cache
+E:\Bat Country\Bat-Country\PointAndClick\PointAndClickContent\obj\x86\Debug\PointAndClickContent.contentproj.CoreCompileInputs.cache

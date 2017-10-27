@@ -27,7 +27,6 @@ E:\Bat Country\Bat-Country\PointAndClick\PointAndClick\obj\x86\Debug\PointAndCli
 E:\Bat Country\Bat-Country\PointAndClick\PointAndClick\bin\x86\Debug\Content\cursor.xnb
 E:\Bat Country\Bat-Country\PointAndClick\PointAndClick\bin\x86\Debug\Content\SpriteCan.xnb
 E:\Bat Country\Bat-Country\PointAndClick\PointAndClick\bin\x86\Debug\Content\doorway.xnb
-E:\Bat Country\Bat-Country\PointAndClick\PointAndClick\bin\x86\Debug\Content\doorway1.xnb
 E:\Bat Country\Bat-Country\PointAndClick\PointAndClick\bin\x86\Debug\Content\x.xnb
 E:\Bat Country\Bat-Country\PointAndClick\PointAndClick\bin\x86\Debug\Content\key.xnb
 E:\Bat Country\Bat-Country\PointAndClick\PointAndClick\bin\x86\Debug\Content\Text.xnb
@@ -47,3 +46,4 @@ E:\Bat Country\Bat-Country\PointAndClick\PointAndClick\bin\x86\Debug\Microsoft.X
 E:\Bat Country\Bat-Country\PointAndClick\PointAndClick\obj\x86\Debug\PointAndClick.csprojResolveAssemblyReference.cache
 E:\Bat Country\Bat-Country\PointAndClick\PointAndClick\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 E:\Bat Country\Bat-Country\PointAndClick\PointAndClick\bin\x86\Debug\Content\dialog.xnb
+E:\Bat Country\Bat-Country\PointAndClick\PointAndClick\obj\x86\Debug\PointAndClick.csproj.CoreCompileInputs.cache

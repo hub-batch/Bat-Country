@@ -29,15 +29,6 @@
       <Time>2017-10-20T12:38:10.1984007-04:00</Time>
     </Item>
     <Item>
-      <Source>doorway1.png</Source>
-      <Name>doorway1</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>E:\Bat Country\Bat-Country\PointAndClick\PointAndClick\bin\x86\Debug\Content\doorway1.xnb</Output>
-      <Time>2017-10-20T12:30:17.881396-04:00</Time>
-    </Item>
-    <Item>
       <Source>x.png</Source>
       <Name>x</Name>
       <Importer>TextureImporter</Importer>
@@ -56,6 +47,15 @@
       <Time>2017-10-23T13:53:01.2156915-04:00</Time>
     </Item>
     <Item>
+      <Source>dialog.png</Source>
+      <Name>dialog</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>E:\Bat Country\Bat-Country\PointAndClick\PointAndClick\bin\x86\Debug\Content\dialog.xnb</Output>
+      <Time>2017-10-26T13:48:18.3153869-04:00</Time>
+    </Item>
+    <Item>
       <Source>Text.spritefont</Source>
       <Name>Text</Name>
       <Importer>FontDescriptionImporter</Importer>
@@ -72,15 +72,6 @@
       <Options>None</Options>
       <Output>E:\Bat Country\Bat-Country\PointAndClick\PointAndClick\bin\x86\Debug\Content\footsteps.xnb</Output>
       <Time>2017-10-26T13:09:42.8871498-04:00</Time>
-    </Item>
-    <Item>
-      <Source>dialog.png</Source>
-      <Name>dialog</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>E:\Bat Country\Bat-Country\PointAndClick\PointAndClick\bin\x86\Debug\Content\dialog.xnb</Output>
-      <Time>2017-10-26T13:48:18.3153869-04:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -120,8 +111,8 @@
         <Value>2011-09-01T16:22:30-04:00</Value>
       </Assembly>
       <Assembly>
-        <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
-        <Value>2017-10-19T11:54:28.3987932-04:00</Value>
+        <Key>C:\WINDOWS\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
+        <Value>2017-10-25T12:52:14.1370903-04:00</Value>
       </Assembly>
     </Assemblies>
   </Asset>

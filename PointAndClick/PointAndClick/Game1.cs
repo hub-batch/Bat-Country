@@ -21,7 +21,6 @@ namespace PointAndClick
         private static Vector2 cursorVec;
         private static Rectangle mainFrame;
         private static Texture2D DoorwayScene;
-        private static Texture2D Doorway;
         private static Rectangle ToRoom;
         private static Texture2D DummyTex;
         private static Rectangle BackRoom;
@@ -63,7 +62,6 @@ namespace PointAndClick
             CursorImage = Content.Load<Texture2D>("Cursor");
             sprite = this.Content.Load<Texture2D>("SpriteCan");
             DoorwayScene = Content.Load<Texture2D>("doorway");
-            Doorway = Content.Load<Texture2D>("doorway1");
             RedXUITex = Content.Load<Texture2D>("x");
             TextFont = Content.Load<SpriteFont>("Text");
             XUIRect = new Rectangle(0, 0, 50, 50);
@@ -83,6 +81,7 @@ namespace PointAndClick
             IsDoneDrawing = false;
             SpriteSorting = SpriteSortMode.FrontToBack;
             Blenda = BlendState.NonPremultiplied;
+
             DEATHRECTANGLE = null;
         }
 
@@ -101,16 +100,17 @@ namespace PointAndClick
         }
         protected override void Draw(GameTime gameTime)
         {
+
             spriteBatch.Begin(SpriteSorting, Blenda);
             DrawBackgroundLayer();
             DrawUILayer();
-            DrawCursorLayer();
             DrawTextLayer();
+            DrawCursorLayer();
             spriteBatch.End();
             base.Draw(gameTime);
         }
 
-        public static void DrawBackgroundLayer()
+        public void DrawBackgroundLayer()
         {
             float zDepth = 0;
             Vector2 DummyVec = new Vector2(0, 0);
@@ -125,7 +125,7 @@ namespace PointAndClick
                 spriteBatch.Draw(DummyTex, BackRoom, DEATHRECTANGLE, Color.White, 0, DummyVec, SpriteEffects.None, zDepth);
             }
         }
-        public static void DrawUILayer()
+        public void DrawUILayer()
         {
             float zDepth = 0.1f;
             Vector2 DummyVec = new Vector2(0, 0);
@@ -133,21 +133,25 @@ namespace PointAndClick
             spriteBatch.Draw(RedXUITex, XUIRect, DEATHRECTANGLE, Color.White, 0, DummyVec, SpriteEffects.None, zDepth);
             spriteBatch.Draw(DialogBox, DialogRect, DEATHRECTANGLE, Color.White, 0, DummyVec, SpriteEffects.None, zDepth);
         }
-        public static void DrawTextLayer()
+        public void DrawTextLayer()
         {
+            var mouseState = Mouse.GetState();
+            cursorPos = new Rectangle(mouseState.X, mouseState.Y, 48, 48);
+            Vector2 TextCursorVec = new Vector2(mouseState.X - 20, mouseState.Y - 20);
             float zDepth = 0.2f;
             Vector2 DummyVec = new Vector2(0, 0);
             if (HoverX == true)
             {
-                spriteBatch.DrawString(TextFont, "Exit" , HoverText, Color.White, 0, HoverText, 0, SpriteEffects.None, zDepth);
+                spriteBatch.DrawString(TextFont, "Exit" , TextCursorVec, Color.Black, 0, DummyVec, 1, SpriteEffects.None, zDepth);
             }
             if (HoverRoom == true)
             {
-                spriteBatch.DrawString(TextFont, "Sprite Time", HoverText, Color.White, 0, HoverText, 0, SpriteEffects.None, zDepth);
+                spriteBatch.DrawString(TextFont, "Sprite Time", TextCursorVec, Color.Black, 0, DummyVec, 1, SpriteEffects.None, zDepth);
+
             }
-            spriteBatch.DrawString(TextFont, TypedText, DialogVec, Color.White, 0, DummyVec, 0, SpriteEffects.None, zDepth);
+            spriteBatch.DrawString(TextFont, TypedText, DialogVec, Color.Black, 0, DummyVec, 1, SpriteEffects.None, zDepth);
         }
-        public static void DrawCursorLayer()
+        public void DrawCursorLayer()
         {
             float zDepth = 0.3f;
             Vector2 DummyVec = new Vector2(0, 0);
@@ -160,7 +164,6 @@ namespace PointAndClick
             cursorPos = new Rectangle(mouseState.X, mouseState.Y, 48, 48);
             cursorVec = new Vector2(mouseState.X, mouseState.Y);
             var CursorPoint = new Point(mouseState.X, mouseState.Y);
-            HoverText = new Vector2(mouseState.X + 25, mouseState.Y - 15);
             if (cursorPos.Intersects(ToRoom))
             {
                 if (IsInRoom == true)
@@ -169,7 +172,7 @@ namespace PointAndClick
                 }
                 if (mouseState.LeftButton == ButtonState.Pressed)
                 {
-                    FootstepsSound.Play();
+                    //FootstepsSound.Play();
                     IsInRoom = false;
                 }
             }
@@ -225,7 +228,7 @@ namespace PointAndClick
 
             return returnString + line;
         }
-        public static void TextTyper(GameTime gameTime)
+        public void TextTyper(GameTime gameTime)
         {
             if (!IsDoneDrawing)
             {

@@ -105,6 +105,7 @@ namespace PointAndClick
             DrawBackgroundLayer();
             DrawUILayer();
             DrawCursorLayer();
+            DrawTextLayer();
             spriteBatch.End();
             base.Draw(gameTime);
         }
@@ -126,17 +127,25 @@ namespace PointAndClick
         }
         public static void DrawUILayer()
         {
-            spriteBatch.Draw(KeyItem.ItemTex, KeyItem.ItemSize, Color.White);
-            spriteBatch.Draw(RedXUITex, XUIRect, Color.White);
-            spriteBatch.Draw(DialogBox, DialogRect, Color.DarkGray);
+            float zDepth = 0.1f;
+            Vector2 DummyVec = new Vector2(0, 0);
+            spriteBatch.Draw(KeyItem.ItemTex, KeyItem.ItemSize, DEATHRECTANGLE, Color.White, 0, DummyVec, SpriteEffects.None, zDepth);
+            spriteBatch.Draw(RedXUITex, XUIRect, DEATHRECTANGLE, Color.White, 0, DummyVec, SpriteEffects.None, zDepth);
+            spriteBatch.Draw(DialogBox, DialogRect, DEATHRECTANGLE, Color.White, 0, DummyVec, SpriteEffects.None, zDepth);
+        }
+        public static void DrawTextLayer()
+        {
+            float zDepth = 0.2f;
+            Vector2 DummyVec = new Vector2(0, 0);
             if (HoverX == true)
             {
-                spriteBatch.DrawString(TextFont, "Exit", HoverText, Color.White);
+                spriteBatch.DrawString(TextFont, "Exit" , HoverText, Color.White, 0, HoverText, 0, SpriteEffects.None, zDepth);
             }
             if (HoverRoom == true)
             {
-                spriteBatch.DrawString(TextFont, "Sprite Time", HoverText, Color.White);
+                spriteBatch.DrawString(TextFont, "Sprite Time", HoverText, Color.White, 0, HoverText, 0, SpriteEffects.None, zDepth);
             }
+            spriteBatch.DrawString(TextFont, TypedText, DialogVec, Color.White, 0, DummyVec, 0, SpriteEffects.None, zDepth);
         }
         public static void DrawCursorLayer()
         {
@@ -187,13 +196,6 @@ namespace PointAndClick
             {
                 HoverX = false;
             }
-            if (cursorPos.Intersects(DialogRect))
-            {
-                if (mouseState.LeftButton == ButtonState.Pressed)
-                {
-                    Dialog();
-                }
-            }
         }
         public void TrackPlayerState()
         {
@@ -203,12 +205,6 @@ namespace PointAndClick
                     break;
                     //Etc. 
             }
-        }
-        public static void Dialog()
-        {
-            spriteBatch.Begin();
-            spriteBatch.DrawString(TextFont, TypedText, DialogVec, Color.White);
-            spriteBatch.End();
         }
         public String parseText(String text)
         {

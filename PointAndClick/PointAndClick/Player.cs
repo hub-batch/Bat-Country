@@ -10,5 +10,8 @@ namespace PointAndClick
         public List<Item> PlayerInventory = new List<Item>();
 
         public int PlayerState { get; set; }
+        public int DialogChoice { get; set; }
+        public bool DialogChoiceMade { get; set; }
+        public List<string> PlayerDialog = new List<string>();
     }
 }

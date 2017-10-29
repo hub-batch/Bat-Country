@@ -29,7 +29,6 @@ namespace PointAndClick
         private static bool IsInRoom = true;
         private static SpriteFont TextFont;
         private static bool HoverX = false;
-        private static Vector2 HoverText;
         private static bool HoverRoom;
         private static Item KeyItem;
         private static Player PlayerOne;
@@ -44,6 +43,10 @@ namespace PointAndClick
         private static SpriteSortMode SpriteSorting;
         private static BlendState Blenda;
         private static Nullable<Rectangle> DEATHRECTANGLE;
+        private Texture2D ContinueArrow;
+        private Rectangle ContinueArrowRect;
+        private bool IsInDialog;
+        private Actor SisActor = new Actor();
 
         public Game1()
         {
@@ -72,25 +75,56 @@ namespace PointAndClick
             KeyItem.ItemTex = Content.Load<Texture2D>("key");
             KeyItem.ItemSize = new Rectangle(200, -30, 100, 100);
             FootstepsSound = Content.Load<SoundEffect>("footsteps");
+            ContinueArrow = Content.Load<Texture2D>("SpriteCan");
+            ContinueArrowRect = new Rectangle(675, 350, 100, 100);
             DialogRect = new Rectangle(0, 275, 800, 200);
             DialogVec = new Vector2(50, 300);
             DialogBox = Content.Load<Texture2D>("dialog");
-            DialogText = "This is text";
+            DialogText = "This is dummy text";
             ParsedText = parseText(DialogText);
             DelayInMilli = 50;
             IsDoneDrawing = false;
             SpriteSorting = SpriteSortMode.FrontToBack;
             Blenda = BlendState.NonPremultiplied;
-
             DEATHRECTANGLE = null;
+            SisActor.ActorID = 1;
+            SisActor.ActorName = "Sarah";
+            SisActor.ActorDialog = new List<string>
+            {
+                //0
+                "Oh...Hello. You must be the man mom called.",
+                //1
+                "She's at the store right now...",
+                //2
+                "He's under the bed. He's been acting weird for days. You've got to help him.",
+                //3
+                "There's a pond out back you can get water from...",
+                //4
+                "I can go get salt.",
+                //5
+                "Okay, here's the salt!"
+            };
+            PlayerOne.PlayerDialog = new List<string>
+            {
+                //0
+                "Uh...Hi?",
+                //1
+                "Where's your mother?",
+                //2
+                "Where's the aflicted?",
+                //3
+                "I can help him. I've been locked out of my car, though. Have to improvise some holy water.",
+                //4
+                "I need salt, too.",
+                //5
+                "Hey, I've got the water."
+            };
         }
 
         protected override void UnloadContent()
         {
 
         }
-
-
         protected override void Update(GameTime gameTime)
         {
             TrackMouse();
@@ -109,7 +143,6 @@ namespace PointAndClick
             spriteBatch.End();
             base.Draw(gameTime);
         }
-
         public void DrawBackgroundLayer()
         {
             float zDepth = 0;
@@ -131,7 +164,13 @@ namespace PointAndClick
             Vector2 DummyVec = new Vector2(0, 0);
             spriteBatch.Draw(KeyItem.ItemTex, KeyItem.ItemSize, DEATHRECTANGLE, Color.White, 0, DummyVec, SpriteEffects.None, zDepth);
             spriteBatch.Draw(RedXUITex, XUIRect, DEATHRECTANGLE, Color.White, 0, DummyVec, SpriteEffects.None, zDepth);
-            spriteBatch.Draw(DialogBox, DialogRect, DEATHRECTANGLE, Color.White, 0, DummyVec, SpriteEffects.None, zDepth);
+            if (IsInDialog == true)
+            {
+                spriteBatch.Draw(DialogBox, DialogRect, DEATHRECTANGLE, Color.White, 0, DummyVec, SpriteEffects.None, zDepth);
+                spriteBatch.Draw(ContinueArrow, ContinueArrowRect, DEATHRECTANGLE, Color.White, 0, DummyVec, SpriteEffects.None, zDepth);
+            }
+
+
         }
         public void DrawTextLayer()
         {
@@ -147,15 +186,74 @@ namespace PointAndClick
             if (HoverRoom == true)
             {
                 spriteBatch.DrawString(TextFont, "Sprite Time", TextCursorVec, Color.Black, 0, DummyVec, 1, SpriteEffects.None, zDepth);
-
             }
-            spriteBatch.DrawString(TextFont, TypedText, DialogVec, Color.Black, 0, DummyVec, 1, SpriteEffects.None, zDepth);
+            if (IsInDialog == true)
+            {
+                spriteBatch.DrawString(TextFont, TypedText, DialogVec, Color.Black, 0, DummyVec, 1, SpriteEffects.None, zDepth);
+            }
+
         }
         public void DrawCursorLayer()
         {
             float zDepth = 0.3f;
             Vector2 DummyVec = new Vector2(0, 0);
             spriteBatch.Draw(CursorImage, cursorPos, DEATHRECTANGLE, Color.White, 0, DummyVec, SpriteEffects.None, zDepth);
+        }
+        public string Dialog(Actor TalkingActor)
+        {
+            while (TalkingActor.IsTalking == true)
+            {
+                if (TalkingActor.IsTalking == true)
+                {
+                    switch (TalkingActor.DialogResponse)
+                    {
+                        case 0:
+                            ParsedText = parseText(TalkingActor.ActorDialog[0]);
+                            return ParsedText;
+                        case 1:
+                            ParsedText = parseText(TalkingActor.ActorDialog[1]);
+                            return ParsedText;
+                        case 2:
+                            ParsedText = parseText(TalkingActor.ActorDialog[2]);
+                            return ParsedText;
+                        case 3:
+                            ParsedText = parseText(TalkingActor.ActorDialog[3]);
+                            return ParsedText;
+                        case 4:
+                            ParsedText = parseText(TalkingActor.ActorDialog[4]);
+                            return ParsedText;
+                        case 5:
+                            ParsedText = parseText(TalkingActor.ActorDialog[5]);
+                            return ParsedText;
+                    }
+                }
+
+                switch (PlayerOne.DialogChoice)
+                {
+                    case 0:
+                        ParsedText = parseText(PlayerOne.PlayerDialog[0]);
+                        return ParsedText;
+                    case 1:
+                        ParsedText = parseText(PlayerOne.PlayerDialog[1]);
+                        return ParsedText;
+                    case 2:
+                        ParsedText = parseText(PlayerOne.PlayerDialog[2]);
+                        return ParsedText;
+                    case 3:
+                        ParsedText = parseText(PlayerOne.PlayerDialog[3]);
+                        return ParsedText;
+                    case 4:
+                        ParsedText = parseText(PlayerOne.PlayerDialog[4]);
+                        return ParsedText;
+                    case 5:
+                        ParsedText = parseText(PlayerOne.PlayerDialog[5]);
+                        return ParsedText;
+                }
+                
+                ParsedText = parseText(TalkingActor.ActorDialog[1]);
+                return ParsedText;
+            }
+            return ParsedText;
         }
         public void TrackMouse()
         {
@@ -164,6 +262,16 @@ namespace PointAndClick
             cursorPos = new Rectangle(mouseState.X, mouseState.Y, 48, 48);
             cursorVec = new Vector2(mouseState.X, mouseState.Y);
             var CursorPoint = new Point(mouseState.X, mouseState.Y);
+            if (cursorPos.Intersects(ContinueArrowRect))
+            {
+                Console.WriteLine("Intersecting with continue arrow");
+                if (mouseState.LeftButton == ButtonState.Pressed)
+                {
+                    Console.WriteLine("Clicking continue arrow");
+                    IsInDialog = false;
+                }
+
+            }
             if (cursorPos.Intersects(ToRoom))
             {
                 if (IsInRoom == true)
@@ -199,15 +307,10 @@ namespace PointAndClick
             {
                 HoverX = false;
             }
+
         }
         public void TrackPlayerState()
         {
-            switch (PlayerOne.PlayerState)
-            {
-                case 1:
-                    break;
-                    //Etc. 
-            }
         }
         public String parseText(String text)
         {

@@ -26,7 +26,7 @@ namespace PointAndClick
         private static Rectangle BackRoom;
         private static Rectangle XUIRect;
         private static Texture2D RedXUITex;
-        private static bool IsInRoom = true;
+        private static bool IsAtDoorstep = true;
         private static SpriteFont TextFont;
         private static bool HoverX = false;
         private static bool HoverRoom;
@@ -47,6 +47,7 @@ namespace PointAndClick
         private Rectangle ContinueArrowRect;
         private bool IsInDialog;
         private Actor SisActor = new Actor();
+        private bool IsInCar, IsInRoom, HasTalkedToSis, IsAtPond, HasWater, ThrowWaterOnKid;
 
         public Game1()
         {
@@ -57,6 +58,7 @@ namespace PointAndClick
         {
             PlayerOne = new Player();
             KeyItem = new Item();
+            PlayerOne.PlayerState = 0;
             base.Initialize();
         }
         protected override void LoadContent()
@@ -123,11 +125,11 @@ namespace PointAndClick
 
         protected override void UnloadContent()
         {
-
+            Content.Unload();
         }
         protected override void Update(GameTime gameTime)
         {
-            TrackMouse();
+            TrackMouse(gameTime);
             TrackPlayerState();
             TextTyper(gameTime);
             base.Update(gameTime);
@@ -147,10 +149,34 @@ namespace PointAndClick
         {
             float zDepth = 0;
             Vector2 DummyVec = new Vector2(0, 0);
-            if (IsInRoom == true)
+            if (IsInCar == true)
+            {
+                spriteBatch.Draw(sprite, mainFrame, DEATHRECTANGLE, Color.White, 0, DummyVec, SpriteEffects.None, zDepth);
+                spriteBatch.Draw(DummyTex, BackRoom, DEATHRECTANGLE, Color.White, 0, DummyVec, SpriteEffects.None, zDepth);
+            }
+            if (IsAtDoorstep == true)
             {
                 spriteBatch.Draw(DoorwayScene, mainFrame, DEATHRECTANGLE, Color.White, 0, DummyVec, SpriteEffects.None, zDepth);
                 spriteBatch.Draw(DummyTex, ToRoom, DEATHRECTANGLE, Color.White, 0, DummyVec, SpriteEffects.None, zDepth);
+            }
+            if (IsInRoom == true)
+            {
+                spriteBatch.Draw(sprite, mainFrame, DEATHRECTANGLE, Color.White, 0, DummyVec, SpriteEffects.None, zDepth);
+            }
+            if (HasTalkedToSis == true)
+            {
+                spriteBatch.Draw(sprite, mainFrame, DEATHRECTANGLE, Color.White, 0, DummyVec, SpriteEffects.None, zDepth);
+                spriteBatch.Draw(DummyTex, BackRoom, DEATHRECTANGLE, Color.White, 0, DummyVec, SpriteEffects.None, zDepth);
+            }
+            if (IsAtPond == true)
+            {
+                spriteBatch.Draw(sprite, mainFrame, DEATHRECTANGLE, Color.White, 0, DummyVec, SpriteEffects.None, zDepth);
+                spriteBatch.Draw(DummyTex, BackRoom, DEATHRECTANGLE, Color.White, 0, DummyVec, SpriteEffects.None, zDepth);
+            }
+            if (HasWater == true)
+            {
+                spriteBatch.Draw(sprite, mainFrame, DEATHRECTANGLE, Color.White, 0, DummyVec, SpriteEffects.None, zDepth);
+                spriteBatch.Draw(DummyTex, BackRoom, DEATHRECTANGLE, Color.White, 0, DummyVec, SpriteEffects.None, zDepth);
             }
             else
             {
@@ -201,9 +227,9 @@ namespace PointAndClick
         }
         public string Dialog(Actor TalkingActor)
         {
-            while (TalkingActor.IsTalking == true)
+            while (IsInDialog == true)
             {
-                if (TalkingActor.IsTalking == true)
+                if (TalkingActor.IsTalking == true && PlayerOne.IsTalking == false)
                 {
                     switch (TalkingActor.DialogResponse)
                     {
@@ -225,37 +251,42 @@ namespace PointAndClick
                         case 5:
                             ParsedText = parseText(TalkingActor.ActorDialog[5]);
                             return ParsedText;
+                        default:
+                            ParsedText = parseText(DialogText);
+                            return ParsedText;
                     }
                 }
-
-                switch (PlayerOne.DialogChoice)
+                if (PlayerOne.IsTalking == true && TalkingActor.IsTalking == false)
                 {
-                    case 0:
-                        ParsedText = parseText(PlayerOne.PlayerDialog[0]);
-                        return ParsedText;
-                    case 1:
-                        ParsedText = parseText(PlayerOne.PlayerDialog[1]);
-                        return ParsedText;
-                    case 2:
-                        ParsedText = parseText(PlayerOne.PlayerDialog[2]);
-                        return ParsedText;
-                    case 3:
-                        ParsedText = parseText(PlayerOne.PlayerDialog[3]);
-                        return ParsedText;
-                    case 4:
-                        ParsedText = parseText(PlayerOne.PlayerDialog[4]);
-                        return ParsedText;
-                    case 5:
-                        ParsedText = parseText(PlayerOne.PlayerDialog[5]);
-                        return ParsedText;
+                    switch (PlayerOne.DialogChoice)
+                    {
+                        case 0:
+                            ParsedText = parseText(PlayerOne.PlayerDialog[0]);
+                            return ParsedText;
+                        case 1:
+                            ParsedText = parseText(PlayerOne.PlayerDialog[1]);
+                            return ParsedText;
+                        case 2:
+                            ParsedText = parseText(PlayerOne.PlayerDialog[2]);
+                            return ParsedText;
+                        case 3:
+                            ParsedText = parseText(PlayerOne.PlayerDialog[3]);
+                            return ParsedText;
+                        case 4:
+                            ParsedText = parseText(PlayerOne.PlayerDialog[4]);
+                            return ParsedText;
+                        case 5:
+                            ParsedText = parseText(PlayerOne.PlayerDialog[5]);
+                            return ParsedText;
+                        default:
+                            ParsedText = parseText(DialogText);
+                            return ParsedText;
+                    }
                 }
-                
-                ParsedText = parseText(TalkingActor.ActorDialog[1]);
-                return ParsedText;
             }
             return ParsedText;
         }
-        public void TrackMouse()
+        public void TrackMouse(GameTime gameTime)
         {
             //Keeps track of the position of the mouse (in a Point, vector, and as a rect)
             var mouseState = Mouse.GetState();
@@ -264,24 +295,22 @@ namespace PointAndClick
             var CursorPoint = new Point(mouseState.X, mouseState.Y);
             if (cursorPos.Intersects(ContinueArrowRect))
             {
-                Console.WriteLine("Intersecting with continue arrow");
                 if (mouseState.LeftButton == ButtonState.Pressed)
                 {
-                    Console.WriteLine("Clicking continue arrow");
                     IsInDialog = false;
                 }
-
             }
             if (cursorPos.Intersects(ToRoom))
             {
-                if (IsInRoom == true)
+                if (IsAtDoorstep == true)
                 {
                     HoverRoom = true;
                 }
                 if (mouseState.LeftButton == ButtonState.Pressed)
                 {
                     //FootstepsSound.Play();
-                    IsInRoom = false;
+                    IsAtDoorstep = false;
+                    IsInRoom = true;
                 }
             }
             else
@@ -292,7 +321,7 @@ namespace PointAndClick
             {
                 if (mouseState.LeftButton == ButtonState.Pressed)
                 {
-                    IsInRoom = true;
+                    IsAtDoorstep = true;
                 }
             }
             if (cursorPos.Intersects(XUIRect))
@@ -311,6 +340,30 @@ namespace PointAndClick
         }
         public void TrackPlayerState()
         {
+            switch (PlayerOne.PlayerState)
+            {
+                case 0:
+                    IsInCar = true;
+                    break;
+                case 1:
+                    IsAtDoorstep = true;
+                    break;
+                case 2:
+                    IsInRoom = true;
+                    break;
+                case 3:
+                    HasTalkedToSis = true;
+                    break;
+                case 4:
+                    IsAtPond = true;
+                    break;
+                case 5:
+                    HasWater = true;
+                    break;
+                case 6:
+                    ThrowWaterOnKid = true;
+                    break;
+            }
         }
         public String parseText(String text)
         {

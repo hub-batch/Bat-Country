@@ -11,7 +11,7 @@ namespace PointAndClick
 
         public int PlayerState { get; set; }
         public int DialogChoice { get; set; }
-        public bool DialogChoiceMade { get; set; }
+        public bool IsTalking { get; set; }
         public List<string> PlayerDialog = new List<string>();
     }
 }

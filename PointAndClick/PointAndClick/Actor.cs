@@ -14,6 +14,5 @@ namespace PointAndClick
         public int ActorID { get; set; }
         public List<string> ActorDialog = new List<string>();
         public bool IsTalking { get; set; }
-        public bool IsDoneTalking { get; set; }
     }
 }
